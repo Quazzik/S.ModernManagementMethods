@@ -1,0 +1,119 @@
+﻿<Window x:Class="S.ModernManagementMethods.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:S.ModernManagementMethods"
+        xmlns:viewModels="clr-namespace:S.ModernManagementMethods.ViewModels"
+        mc:Ignorable="d"
+        Title="Оптимизация расхода топлива доменных печей" 
+        Height="700" Width="1200"
+        WindowState="Maximized">
+    <Window.DataContext>
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Управление доменными печами" 
+                   FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <GroupBox Grid.Row="1" Header="Общие параметры цеха" Margin="0,0,0,10">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="5">
+                    <TextBlock Text="Стоимость кокса (руб/кг):"/>
+                    <TextBox Text="{Binding CokeCost, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="5">
+                    <TextBlock Text="Стоимость газа (руб/м³):"/>
+                    <TextBox Text="{Binding GasCost, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Margin="5">
+                    <TextBlock Text="Запас газа (м³/ч):"/>
+                    <TextBox Text="{Binding GasStock, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3" Margin="5">
+                    <TextBlock Text="Запас кокса (т/ч):"/>
+                    <TextBox Text="{Binding CokeStock, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="4" Margin="5">
+                    <TextBlock Text="Требуемое производство (т/ч):"/>
+                    <TextBox Text="{Binding CastIronNeed, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,0"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Header="Список доменных печей">
+            <DataGrid ItemsSource="{Binding Furnaces}" 
+                      SelectedItem="{Binding SelectedFurnace}"
+                      AutoGenerateColumns="False" 
+                      CanUserAddRows="False" 
+                      IsReadOnly="True"
+                      SelectionMode="Single" 
+                      Margin="5">
+                <DataGrid.Columns>
+                    <!-- Идентификация -->
+                    <DataGridTextColumn Header="№" Binding="{Binding Index}" Width="40" />
+                    
+                    <!-- Параметры газа -->
+                    <DataGridTextColumn Header="Расход газа (м³/ч)" Binding="{Binding GasUsage, StringFormat=F0}" Width="110" />
+                    <DataGridTextColumn Header="Мин. газ (м³/ч)" Binding="{Binding MinimalGasUsage, StringFormat=F0}" Width="100" />
+                    <DataGridTextColumn Header="Макс. газ (м³/ч)" Binding="{Binding MaximalGasUsage, StringFormat=F0}" Width="100" />
+                    
+                    <!-- Параметры кокса -->
+                    <DataGridTextColumn Header="Расход кокса (т/ч)" Binding="{Binding CokeCoalUsage, StringFormat=F2}" Width="110" />
+                    <DataGridTextColumn Header="Коэфф. замены" Binding="{Binding CokeReplacementKoefficient, StringFormat=F2}" Width="100" />
+                    
+                    <!-- Производительность и температура -->
+                    <DataGridTextColumn Header="Произв-сть (т/ч)" Binding="{Binding CastironProductivity, StringFormat=F1}" Width="110" />
+                    <DataGridTextColumn Header="Темп. (°C)" Binding="{Binding BurningTemperature, StringFormat=F0}" Width="90" />
+                    <DataGridTextColumn Header="Мин. темп. (°C)" Binding="{Binding MinimalBurningTemperature, StringFormat=F0}" Width="90" />
+                    <DataGridTextColumn Header="Макс. темп. (°C)" Binding="{Binding MaximalBurningTemperature, StringFormat=F0}" Width="90" />
+                    
+                    <!-- Коэффициенты влияния -->
+                    <DataGridTextColumn Header="Δ Пр-во/Газ" Binding="{Binding ProductivityChangeByGasChange, StringFormat=F7}" Width="110" />
+                    <DataGridTextColumn Header="Δ Пр-во/Кокс" Binding="{Binding ProductivityChangeByCokeChange, StringFormat=F6}" Width="110" />
+                    <DataGridTextColumn Header="Δ Темп/Газ" Binding="{Binding TemperatureChangeByGasChange, StringFormat=F5}" Width="110" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+            <Button Content="Добавить печь" Command="{Binding AddFurnaceCommand}" 
+                    Width="120" Height="30" Margin="5"/>
+            <Button Content="Редактировать" Command="{Binding EditFurnaceCommand}" 
+                    Width="120" Height="30" Margin="5"/>
+            <Button Content="Удалить" Command="{Binding DeleteFurnaceCommand}" 
+                    Width="120" Height="30" Margin="5"/>
+            <Separator Width="20" Background="Transparent"/>
+            <Button Content=" Рассчитать оптимизацию" Command="{Binding CalculateCommand}" 
+                    Width="200" Height="35" FontSize="14" FontWeight="Bold"
+                    Background="#4CAF50" Foreground="White" Margin="5"/>
+        </StackPanel>
+
+        <StatusBar Grid.Row="4" Margin="0,10,0,0">
+            <StatusBarItem>
+                <TextBlock Text="{Binding StatusMessage}"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
