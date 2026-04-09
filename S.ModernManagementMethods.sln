@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S.ModernManagementMethods", "S.ModernManagementMethods\S.ModernManagementMethods.csproj", "{04241F6E-AA57-4523-937A-4AF9AB0C96DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasOptimizationLib", "GasOptimizationLib\GasOptimizationLib.csproj", "{38F7D2DE-BFF5-4E13-8423-362619817C42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04241F6E-AA57-4523-937A-4AF9AB0C96DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04241F6E-AA57-4523-937A-4AF9AB0C96DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04241F6E-AA57-4523-937A-4AF9AB0C96DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04241F6E-AA57-4523-937A-4AF9AB0C96DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F7D2DE-BFF5-4E13-8423-362619817C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F7D2DE-BFF5-4E13-8423-362619817C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F7D2DE-BFF5-4E13-8423-362619817C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F7D2DE-BFF5-4E13-8423-362619817C42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
