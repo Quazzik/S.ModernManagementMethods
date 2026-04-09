@@ -7,7 +7,7 @@ public class FurnaceParameters
     public double MaximalGasUsage { get; set; } //Максимальный раход
     
     public double CokeCoalUsage { get; set; } //Базовый расход коксового угля
-    public double CokeReplacementKoefficient { get; set; } //Коэффициент замены кокса
+    public double CokeReplacementKoefficient { get; set; } //Эквивалент замены кокса
 
     public double CastironProductivity { get; set; } //Производительность по чугуну в базовом периоде
     
