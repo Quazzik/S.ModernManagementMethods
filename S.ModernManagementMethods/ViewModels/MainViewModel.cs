@@ -91,7 +91,6 @@ public class MainViewModel : ViewModelBase
             {
                 Furnaces.Add(new FurnaceViewModel
                 {
-                    Index = index++,
                     GasUsage = data.GasUsage,
                     MinimalGasUsage = 10000,
                     MaximalGasUsage = 20000,
@@ -140,7 +139,7 @@ public class MainViewModel : ViewModelBase
             if (SelectedFurnace == null) return;
 
             var result = MessageBox.Show(
-                $"Удалить печь №{SelectedFurnace.Index}?", 
+                $"Удалить печь?", 
                 "Подтверждение",
                 MessageBoxButton.YesNo, 
                 MessageBoxImage.Question);

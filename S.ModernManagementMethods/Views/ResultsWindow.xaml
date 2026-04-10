@@ -56,7 +56,6 @@
                       IsReadOnly="True" 
                       Margin="5">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№ печи" Binding="{Binding FurnaceIndex}" Width="60"/>
                     <DataGridTextColumn Header="Газ (м³/ч)" Binding="{Binding SolvedGasUsage}" Width="120"/>
                     <DataGridTextColumn Header="Кокс (т/ч)" Binding="{Binding SolvedCokeCoalUsage}" Width="110"/>
                     <DataGridTextColumn Header="Производство (т/ч)" Binding="{Binding SolvedCastironProductivity}" Width="130"/>

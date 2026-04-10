@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using S.ModernManagementMethods.Infrastructure;
@@ -46,7 +47,7 @@ public class FurnaceDialogViewModel : ViewModelBase
             GasUsage = "15000";
             MinimalGasUsage = "10000";
             MaximalGasUsage = "20000";
-            CokeCoalUsage = "60.0";
+            CokeCoalUsage = "60,0";
             CokeReplacementKoefficient = "0.7";
             CastironProductivity = "140.0";
             BurningTemperature = "1950";
@@ -81,19 +82,18 @@ public class FurnaceDialogViewModel : ViewModelBase
             {
                 _furnace = new FurnaceViewModel
                 {
-                    Index = GetIndexFromTitle(),
-                    GasUsage = double.Parse(GasUsage),
-                    MinimalGasUsage = double.Parse(MinimalGasUsage),
-                    MaximalGasUsage = double.Parse(MaximalGasUsage),
-                    CokeCoalUsage = double.Parse(CokeCoalUsage),
-                    CokeReplacementKoefficient = double.Parse(CokeReplacementKoefficient),
-                    CastironProductivity = double.Parse(CastironProductivity),
-                    BurningTemperature = double.Parse(BurningTemperature),
-                    MinimalBurningTemperature = double.Parse(MinimalBurningTemperature),
-                    MaximalBurningTemperature = double.Parse(MaximalBurningTemperature),
-                    ProductivityChangeByGasChange = double.Parse(ProductivityChangeByGasChange),
-                    ProductivityChangeByCokeChange = double.Parse(ProductivityChangeByCokeChange),
-                    TemperatureChangeByGasChange = double.Parse(TemperatureChangeByGasChange)
+                    GasUsage = double.Parse(GasUsage, CultureInfo.InvariantCulture),
+                    MinimalGasUsage = double.Parse(MinimalGasUsage, CultureInfo.InvariantCulture),
+                    MaximalGasUsage = double.Parse(MaximalGasUsage, CultureInfo.InvariantCulture),
+                    CokeCoalUsage = double.Parse(CokeCoalUsage, CultureInfo.InvariantCulture),
+                    CokeReplacementKoefficient = double.Parse(CokeReplacementKoefficient, CultureInfo.InvariantCulture),
+                    CastironProductivity = double.Parse(CastironProductivity, CultureInfo.InvariantCulture),
+                    BurningTemperature = double.Parse(BurningTemperature, CultureInfo.InvariantCulture),
+                    MinimalBurningTemperature = double.Parse(MinimalBurningTemperature, CultureInfo.InvariantCulture),
+                    MaximalBurningTemperature = double.Parse(MaximalBurningTemperature, CultureInfo.InvariantCulture),
+                    ProductivityChangeByGasChange = double.Parse(ProductivityChangeByGasChange, CultureInfo.InvariantCulture),
+                    ProductivityChangeByCokeChange = double.Parse(ProductivityChangeByCokeChange, CultureInfo.InvariantCulture),
+                    TemperatureChangeByGasChange = double.Parse(TemperatureChangeByGasChange, CultureInfo.InvariantCulture)
                 };
 
                 // Если редактируем существующую, сохраняем её Index

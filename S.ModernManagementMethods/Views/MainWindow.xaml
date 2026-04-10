@@ -71,9 +71,6 @@
                       SelectionMode="Single" 
                       Margin="5">
                 <DataGrid.Columns>
-                    <!-- Идентификация -->
-                    <DataGridTextColumn Header="№" Binding="{Binding Index}" Width="40" />
-                    
                     <!-- Параметры газа -->
                     <DataGridTextColumn Header="Расход газа (м³/ч)" Binding="{Binding GasUsage, StringFormat=F0}" Width="110" />
                     <DataGridTextColumn Header="Мин. газ (м³/ч)" Binding="{Binding MinimalGasUsage, StringFormat=F0}" Width="100" />
